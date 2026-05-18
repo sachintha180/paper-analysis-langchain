@@ -18,7 +18,7 @@ class Paper(TypedDict):
     empty_pages: int
 
 
-# NOTE: See prompts/extraction.md for more information about the following attributes
+# NOTE: See prompts/extractor.md for more information about the following attributes
 class Question(BaseModel):
     number: str
     marks: int
