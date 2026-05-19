@@ -23,7 +23,7 @@ from agents.export import export
 
 from custom_types.agent import GraphState
 
-from constants import INPUT_DIR
+from constants import INPUT_DIR, OUTPUT_DIR
 
 
 def route_to_extract(state: GraphState) -> List[Send]:
@@ -54,7 +54,7 @@ else:
     logging.info("Found %d papers to process", len(pdf_paths))
     graph = build_graph()
 
-    with open("output/graph.png", "wb") as f:
+    with open(OUTPUT_DIR / "graph.png", "wb") as f:
         f.write(graph.get_graph(xray=True).draw_mermaid_png())
 
     graph.invoke({"pdf_paths": pdf_paths})

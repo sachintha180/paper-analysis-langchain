@@ -1,7 +1,7 @@
 import json
 from typing import cast, List
 
-from constants import EXTRACTION_PROMPT_FP, PAPER3_TOPICS, EXPORTER_PROMPT_FP
+from constants import EXTRACTION_PROMPT_FP, TOPICS, EXPORTER_PROMPT_FP
 
 from custom_types.agent import GraphState
 from custom_types.core import Question, Session, PDFMetadata, Paper
@@ -58,7 +58,7 @@ def build_user_prompt(state: GraphState) -> str:
         f"## Statistical Analysis\n\n"
         f"```json\n{json.dumps(state['analysis'], indent=2)}\n```\n\n"
         f"## Topic Reference\n\n"
-        f"{json.dumps(PAPER3_TOPICS, indent=2)}\n\n"
+        f"{json.dumps(TOPICS, indent=2)}\n\n"
         f"## Per-Paper Question Extracts\n\n"
         f"{per_paper_section}"
     )
