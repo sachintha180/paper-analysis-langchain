@@ -2,7 +2,7 @@ import logging
 from typing import Dict
 
 from utils import build_per_paper_md
-from constants import PAPER3_TOPICS, ANALYSIS_HIGH_FREQ_THRESHOLD
+from constants import PAPER_PREFIX, TOPICS, ANALYSIS_HIGH_FREQ_THRESHOLD
 
 from custom_types.agent import AgentOutput, GraphState
 
@@ -14,9 +14,12 @@ def analyse(state: GraphState) -> AgentOutput:
     logger.info("Analysing questions across %d papers", len(questions_by_paper))
     papers_by_name = {p["name"]: p for p in state["papers"]}
 
+    if PAPER_PREFIX not in TOPICS:
+        raise KeyError(f"Supplied PAPER_PREFIX {PAPER_PREFIX} not in TOPIC dictionary")
+
     topic_stats = {
         code: {"total_questions": 0, "total_marks": 0, "papers_appeared_in": 0}
-        for code in PAPER3_TOPICS
+        for code in TOPICS[PAPER_PREFIX]
     }
     marks_per_paper: Dict[str, int] = {}
     command_word_counts: Dict[str, int] = {}
